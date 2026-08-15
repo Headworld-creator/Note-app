@@ -26,7 +26,7 @@
   } else {
    body.style.display = "block";
   }
- };
+ }
 
  function clearSearch(){
   document.querySelector("[name='search_note']").value = '';
