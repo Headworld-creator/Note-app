@@ -1,0 +1,44 @@
+body{background: aliceblue;font-family: sans-serif;}
+p{font-size: 15px;line-height: 20px;padding: 10px;margin-top: 0}
+header{height:50px;background: indianred;color: aliceblue; position: fixed;right: 0;top: 0;left: 0; display: flex;flex-direction: row;justify-content: start;gap:10px;align-items: center;padding: 0 10px}
+svg{height: 23px;width: fit-content;fill: aliceblue;cursor: pointer;}
+main{margin-top: 70px;display: flex;flex-direction: column;justify-content: center;align-items: start;}
+nav{display: flex;flex-direction: row;justify-content: space-between;align-items: center;}
+
+.search{width:100%;display: flex;justify-content: center;}
+.search-bar{display: flex;flex-direction: row;align-items: center;border: solid 1px indianred;background-color: white;width: fit-content;border-radius: 20px;overflow: hidden;}
+.search-bar button{background-color: indianred;border: none;padding: 3px 12px;border-radius: 0 5px 5px 0;}
+.search-bar input {padding: 7px 11px;outline: none;border: none;}
+.search-bar span {background: rgb(0, 0, 0, 0.1);font-size: 14px;border-radius: 10px;padding: 1px 3px;color: grey;margin-right: 5px;display: none;cursor: pointer;}
+
+.display-note {color:indianred;margin-top: 20px; width:98%;border-radius: 10px;display: flex;flex-direction: column; align-items: start;gap: 5px}
+.display-note h3{margin: 0}
+.display-body{display: none;margin-left: 3px; color: whitesmoke; background: grey;width: 95%;word-break: break-word;}
+.display-head:hover{ box-shadow: 0 0 1px 1px indianred;}
+.display-heading {width: 100%; padding: 5px;border-radius: 15px;display: flex;flex-direction: row;align-items: center}
+.display-head {cursor: pointer;border: 1px solid indianred; display: flex;flex-direction: row;align-items: center;justify-content: space-between;width: 100%;}
+.options {display: flex;justify-content: space-between;align-items: center;}
+.options svg {padding: 3px; border-radius: 10px} .options svg:hover {background: lightblue;}
+
+.confirm-delete-cont{position: absolute;top: 0;right: 0;left: 0;bottom: 0;display: none;justify-content: center;align-items: center;background: rgb(0, 0, 0, 0.3);}
+.confirm-delete{background: aliceblue;padding: 15px;}
+.delete-actions{display: flex;align-items: center;justify-content: right;gap: 10px;}
+.delete-actions button{padding: 5px;border: none;}
+#cancelDel{border-radius: 10px;}
+#confirmDel{border-radius: 5px;background: indianred;color: aliceblue;}
+
+
+.add{display: none;  width: 100%;height: fit-content; border: none;border-right: 1px solid indianred;border-left: 1px solid indianred;border-bottom: 1px solid indianred;}
+.form-header{width: 100%; display: flex;justify-content: space-between; align-items: center;gap: 10px;border-top: 1px solid indianred;border-bottom: 1px solid indianred;}
+.add svg, .display-note svg{fill:indianred;height: 20px;margin: 5px}
+.form-texts{display: flex;flex-direction: column;}
+.form-texts textarea{background: aliceblue;border: none;outline: none;min-height: 75vh;}
+.form-texts input{outline: none; padding: 10px; border: none;border-bottom: solid 1px indianred;background: aliceblue;}
+.add button{border:none;}
+
+
+footer{position: fixed;background: aliceblue;bottom: 0;right: 0;left: 0;border-top: solid 1px indianred;padding: 10px;gap: 10px;display: flex;flex-direction: row;align-items: center;justify-content: start;} 
+footer h3, form h3{margin:5px}
+footer svg{height: 20px; fill: black;border: solid 1px indianred; border-radius: 20px}
+footer svg:hover{fill: aliceblue;background: grey;}
+footer svg:active{box-shadow: 0 0 0 5px grey;}
