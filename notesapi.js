@@ -153,3 +153,4 @@ add.addEventListener("submit", async (e) => {
 window.addEventListener("DOMContentLoaded", async()=>{
  getNotes()
 });
+
