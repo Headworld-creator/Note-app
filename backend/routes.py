@@ -37,4 +37,15 @@ def register_routes(app):
    return jsonify({"message":"no matching notes"})
   return jsonify(rows)
  
+ @app.put("/notes/<int:id>")
+ def edit_note(id):
+  data = request.get_json()
+
+  try:
+   rows = db.edit_note(data['head'], data['body'], id)
+   return jsonify({"message":"edited successfully"})
+  except Exception as e:
+   err_msg = f'error{e}'
+   return jsonify({'message':err_msg})
+
 # 

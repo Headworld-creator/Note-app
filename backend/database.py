@@ -27,3 +27,8 @@ def search_note(keyword):
  query = f"%{keyword}%"
  c.execute("SELECT *  FROM notes WHERE head LIKE ? OR body LIKE ?", (query, query))
  return [dict(row) for row in c.fetchall()]
+
+# UPDATE NOTES
+def edit_note(heading, body, project_id):
+ with conn:
+  c.execute("UPDATE notes SET head=?, body=? WHERE id=?", (heading, body, project_id,))

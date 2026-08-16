@@ -21,7 +21,7 @@ function viewNotes(notes){
       </div>
       
       <div class="options">
-       <svg class="edit" xmlns="http://www.w3.org/2000/svg" id="Filled" viewBox="0 0 24 24" width="512" height="512"><path d="M1.172,19.119A4,4,0,0,0,0,21.947V24H2.053a4,4,0,0,0,2.828-1.172L18.224,9.485,14.515,5.776Z"/><path d="M23.145.855a2.622,2.622,0,0,0-3.71,0L15.929,4.362l3.709,3.709,3.507-3.506A2.622,2.622,0,0,0,23.145.855Z"/></svg>
+       <svg onclick="editNote(${note.id})" class="edit" xmlns="http://www.w3.org/2000/svg" id="Filled" viewBox="0 0 24 24" width="512" height="512"><path d="M1.172,19.119A4,4,0,0,0,0,21.947V24H2.053a4,4,0,0,0,2.828-1.172L18.224,9.485,14.515,5.776Z"/><path d="M23.145.855a2.622,2.622,0,0,0-3.71,0L15.929,4.362l3.709,3.709,3.507-3.506A2.622,2.622,0,0,0,23.145.855Z"/></svg>
        <svg onclick="deleteNote(${note.id})" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512"><g><path d="M448,85.333h-66.133C371.66,35.703,328.002,0.064,277.333,0h-42.667c-50.669,0.064-94.327,35.703-104.533,85.333H64   c-11.782,0-21.333,9.551-21.333,21.333S52.218,128,64,128h21.333v277.333C85.404,464.214,133.119,511.93,192,512h128   c58.881-0.07,106.596-47.786,106.667-106.667V128H448c11.782,0,21.333-9.551,21.333-21.333S459.782,85.333,448,85.333z    M234.667,362.667c0,11.782-9.551,21.333-21.333,21.333C201.551,384,192,374.449,192,362.667v-128   c0-11.782,9.551-21.333,21.333-21.333c11.782,0,21.333,9.551,21.333,21.333V362.667z M320,362.667   c0,11.782-9.551,21.333-21.333,21.333c-11.782,0-21.333-9.551-21.333-21.333v-128c0-11.782,9.551-21.333,21.333-21.333   c11.782,0,21.333,9.551,21.333,21.333V362.667z M174.315,85.333c9.074-25.551,33.238-42.634,60.352-42.667h42.667   c27.114,0.033,51.278,17.116,60.352,42.667H174.315z"/></g></svg>
       </div>
      
@@ -37,8 +37,7 @@ const noteForm = document.getElementById("addNote");
 let title = document.querySelector('[name="title"]');
 let content = document.querySelector('[name="body"]');
 
-noteForm.addEventListener("submit", async(e)=>{
- e.preventDefault();
+async function addNote(){
 
  title = title.value;
  content = content.value;
@@ -54,7 +53,7 @@ noteForm.addEventListener("submit", async(e)=>{
  console.log(response);
  getNotes()
  window.location.reload()
-})
+}
 
 // DELETE
 const confirmDelete = document.createElement("div")
@@ -114,11 +113,41 @@ document.querySelector(".search").addEventListener("submit", (e)=>{
 });
 
 // EDIT AND UPDATE
-// editingNoteId = null;
+editingNoteId = null;
 
-// async function updateProject() {
-//  const editNote = notes.
-// }
+async function editNote(id) {
+ const edit = notes.find(p => p.id === id);
+ editingNoteId = id;
+ title.value = edit.head;
+ content.value = edit.body;
+
+ search.style.display = "none";
+ saved.style.display = "none";
+ footer.style.display = "none";
+ add.style.display = "block";
+}
+
+add.addEventListener("submit", async (e) => {
+ e.preventDefault();
+
+ if (editingNoteId !== null){
+  res = await fetch(`${localhost}notes/${editingNoteId}`, {
+   method: 'PUT',
+   headers: {"Content-Type": 'application/json'},
+   body: JSON.stringify({
+    head: title.value,
+    body: content.value
+   })
+  })
+
+  const editRes = await res.json()
+  console.log(editRes)
+  getNotes();
+
+ } else {
+  addNote();
+ }
+})
 
 // GET NOTES
 window.addEventListener("DOMContentLoaded", async()=>{
